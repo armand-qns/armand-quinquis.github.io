@@ -137,26 +137,37 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-7 space-y-4">
-                <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
-                    <div class="w-full aspect-square bg-slate-950 rounded-lg overflow-hidden border border-slate-850 mb-2 flex items-center justify-center max-h-[300px]">
+            <div class="lg:col-span-7 space-y-6">
+                
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-4">
+                    <div class="w-full aspect-square bg-slate-950 rounded-lg overflow-hidden border border-slate-850 mb-3 flex items-center justify-center">
                         <img src="img/gif_tiago_arm.gif" alt="Déploiement du bras sous Matplotlib" class="w-full h-full object-contain">
                     </div>
-                    <h4 class="text-xs font-semibold text-center text-slate-300">Déploiement du bras sous Matplotlib</h4>
+                    <div class="text-center border-t border-slate-800/60 pt-2">
+                        <h4 class="text-xs font-semibold text-slate-300">Déploiement du bras sous Matplotlib</h4>
+                    </div>
                 </div>
 
-                <div class="p-3 bg-slate-900/60 border border-slate-800/80 rounded-xl">
-                    <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden max-h-[240px]">
-                        <img src="img/img_rviz_live_grid.png" alt="Zones de prédiction sur RViz" class="w-full h-auto max-h-[220px] object-contain">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-4 flex flex-col justify-between">
+                        <div class="w-full aspect-square bg-slate-950 rounded-lg overflow-hidden border border-slate-850 mb-3 flex items-center justify-center">
+                            <img src="img/img_rviz_live_grid.png" alt="Zones de prédiction sur RViz" class="w-full h-full object-contain">
+                        </div>
+                        <div class="text-center border-t border-slate-800/60 pt-2">
+                            <h4 class="text-xs font-semibold text-slate-300">Zones de prédiction sur RViz</h4>
+                        </div>
                     </div>
-                    <h4 class="text-xs font-semibold text-center text-slate-300">Zones de prédiction sur RViz</h4>
-                </div>
 
-                <div class="p-3 bg-slate-900/60 border border-slate-800/80 rounded-xl">
-                    <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden max-h-[240px]">
-                        <img src="img/img_gazebo_vehicle_simulation.png" alt="Modularité : Zones pour un engin de chantier" class="w-full h-auto max-h-[220px] object-contain">
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-4 flex flex-col justify-between">
+                        <div class="w-full aspect-square bg-slate-950 rounded-lg overflow-hidden border border-slate-850 mb-3 flex items-center justify-center">
+                            <img src="img/img_gazebo_vehicle_simulation.png" alt="Modularité : Zones pour un engin de chantier" class="w-full h-full object-contain">
+                        </div>
+                        <div class="text-center border-t border-slate-800/60 pt-2">
+                            <h4 class="text-xs font-semibold text-slate-300">Modularité : Zones pour un engin de chantier</h4>
+                        </div>
                     </div>
-                    <h4 class="text-xs font-semibold text-center text-slate-300">Modularité : Zones pour un engin de chantier</h4>
+                    
                 </div>
             </div>
         </section>
@@ -183,7 +194,14 @@
             </div>
             <div class="lg:col-span-7 space-y-4">
                 <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-slate-900">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/5xV1zjk3q4E" title="Pipeline de détection sur ROS 2 et RViz" frameborder="0" allowfullscreen></iframe>
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full" 
+                        src="https://www.youtube.com/embed/5xV1zjk3q4E" 
+                        title="Pipeline de détection sur ROS 2 et RViz" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
         </section>
