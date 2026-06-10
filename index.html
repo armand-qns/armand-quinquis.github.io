@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Stage | Robotique & Évitement de Collisions</title>
+    <title>Portfolio R&D | Maîtrise des Systèmes Robotiques</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,271 +18,736 @@
             }
         }
     </script>
+    <script>
+        function switchView(viewId) {
+            document.getElementById('view-home').classList.add('hidden');
+            document.getElementById('view-m1').classList.add('hidden');
+            document.getElementById('view-m2').classList.add('hidden');
+            document.getElementById('view-isir').classList.add('hidden');
+            
+            document.getElementById('view-' + viewId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+
+            const navM1 = document.getElementById('nav-links-m1');
+            const navM2 = document.getElementById('nav-links-m2');
+            const navIsir = document.getElementById('nav-links-isir');
+            const btnHome = document.getElementById('btn-back-home');
+
+            if (viewId === 'home') {
+                navM1.classList.add('hidden');
+                navM2.classList.add('hidden');
+                navIsir.classList.add('hidden');
+                btnHome.classList.add('hidden');
+            } else if (viewId === 'm1') {
+                navM1.classList.remove('hidden');
+                navM2.classList.add('hidden');
+                navIsir.classList.add('hidden');
+                btnHome.classList.remove('hidden');
+            } else if (viewId === 'm2') {
+                navM1.classList.add('hidden');
+                navM2.classList.remove('hidden');
+                navIsir.classList.add('hidden');
+                btnHome.classList.remove('hidden');
+            } else if (viewId === 'isir') {
+                navM1.classList.add('hidden');
+                navM2.classList.add('hidden');
+                navIsir.classList.remove('hidden');
+                btnHome.classList.remove('hidden');
+            }
+
+            // AJOUT CRITIQUE : Relance le rendu des maths pour la vue qui vient d'apparaître
+            if (window.MathJax && typeof window.MathJax.typeset === 'function') {
+                window.MathJax.typeset();
+            }
+        }
+    </script>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']]
+            },
+            options: {
+                processHtmlClass: 'scroll-smooth' // Indique à MathJax de scanner tout le body
+            }
+        };
+    </script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
 
     <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="switchView('home')">
                 <span class="h-3 w-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="font-mono text-sm tracking-wider uppercase text-slate-400">Portfolio // R&D Robotique</span>
+                <span class="font-mono text-sm tracking-wider uppercase text-slate-400">Portfolio // Quinquis Armand</span>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-                <a href="#contexte" class="hover:text-emerald-400 transition-colors">Contexte</a>
-                <a href="#competences" class="hover:text-emerald-400 transition-colors">Compétences</a>
-                <a href="#projets" class="hover:text-emerald-400 transition-colors">Projets</a>
+            
+            <nav class="flex space-x-4 text-sm font-medium">
+                <button id="btn-back-home" onclick="switchView('home')" class="hidden text-slate-400 hover:text-white transition-colors">
+                    ← Accueil
+                </button>
             </nav>
-            <a href="#projets" class="inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-slate-200 border border-slate-800 hover:bg-slate-800 transition-colors">
-                Synthèse des travaux
-            </a>
         </div>
     </header>
 
-    <section class="relative overflow-hidden border-b border-slate-900 bg-gradient-to-b from-slate-900/50 to-transparent py-20 sm:py-28">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl">
-                <span class="inline-flex items-center rounded-md bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400 ring-1 ring-inset ring-emerald-500/20 mb-6">
-                    Stage de Master 1 — Automatique & Robotique
-                </span>
+<div id="view-home" class="block">
+        <section class="relative overflow-hidden bg-gradient-to-b from-slate-900/40 to-transparent py-16 text-center border-b border-slate-900">
+            <div class="max-w-4xl mx-auto px-4 relative z-10">
                 <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                    Modélisation & Analyse de l'Espace Occupé par un Robot Manipulateur Mobile
+                    Travaux de Recherche &amp; Développement Robotique
                 </h1>
-                <p class="mt-4 text-lg text-emerald-400 font-medium">
-                    Développement sous ROS 2 d'algorithmes prédictifs pour l'évitement de collisions temps réel.
+                <p class="mt-4 text-base text-slate-400 max-w-2xl mx-auto">
+                    Sélection de projets d'ingénierie et de recherche universitaire axés sur le contrôle avancé, la perception temps réel, l'optimisation évolutionnaire et la cohabitation homme-robot sécurisée.
                 </p>
             </div>
-        </div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.06),transparent_45%)]"></div>
-    </section>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.04),transparent_60%)]"></div>
+        </section>
 
-    <section id="contexte" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-900">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div>
-                <h2 class="text-xs font-semibold uppercase tracking-wider text-emerald-400">01 / Cadre de recherche</h2>
-                <p class="mt-2 text-2xl font-bold tracking-tight text-white">Contexte & Objectif</p>
-            </div>
-            <div class="lg:col-span-2 space-y-4 text-slate-400 text-sm leading-relaxed">
-                <p>
-                    Stage d'ingénierie mené au <strong class="text-slate-200">LAAS-CNRS (Toulouse)</strong> au sein de l'équipe <strong class="text-slate-200">RAP (Robotique, Action et Perception)</strong>.
-                </p>
-                <p>
-                    <strong class="text-slate-300">La problématique :</strong> Sécuriser la cohabitation Homme-Robot en milieu industriel perturbé. L'objectif était de concevoir un système capable de prédire mathématiquement et en temps réel le volume spatial qu'occupera un robot mobile articulé à court terme pour interdire toute collision avec les piétons.
-                </p>
-            </div>
-        </div>
-    </section>
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    <section id="competences" class="py-16 bg-slate-900/10 border-b border-slate-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-8">
-                <h2 class="text-xs font-semibold uppercase tracking-wider text-emerald-400">02 / Boîte à outils</h2>
-                <p class="mt-2 text-2xl font-bold tracking-tight text-white">Compétences & Stack Technique</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="p-4 bg-slate-900/40 border border-slate-800 rounded-lg">
-                    <h3 class="text-sm font-semibold text-white mb-2 uppercase tracking-wide text-emerald-400/90">Middleware</h3>
-                    <p class="text-xs text-slate-400 font-mono">ROS 2, Arbre TF2, Graphes rqt, Launch files, YAML</p>
+                <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-emerald-500/40 transition-all group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10">
+                                <img src="img/logo_laas.png" alt="Logo LAAS-CNRS" class="h-full w-auto object-contain">
+                            </div>
+                            
+                            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full inline-block">Stage M1</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                            Modélisation &amp; Analyse de l'Espace Occupé par un Robot Manipulateur Mobile
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-2 line-clamp-3">
+                            Développement sous ROS 2 d'algorithmes prédictifs de volume spatial à court terme pour interdire toute collision homme-robot en milieu industriel perturbé.
+                        </p>
+                        
+                        <div class="mt-6 space-y-2 border-t border-slate-800/60 pt-4 text-xs text-slate-400">
+                            <div><span class="text-slate-500">Laboratoire :</span> LAAS-CNRS (Toulouse), Équipe RAP</div>
+                            <div><span class="text-slate-500">Encadrant :</span> Martin Mujica — <span class="italic font-mono">mmujica@laas.fr</span></div>
+                            <div><span class="text-slate-500">Période :</span> Avril/Septembre 2025 — 6 mois</div>
+                        </div>
+                    </div>
+                    <button onclick="switchView('m1')" class="mt-8 w-full inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-xs font-semibold text-emerald-400 border border-slate-800 hover:bg-emerald-500/10 hover:border-emerald-500/30 transition-colors">
+                        Consulter les méthodes &amp; résultats →
+                    </button>
                 </div>
-                <div class="p-4 bg-slate-900/40 border border-slate-800 rounded-lg">
-                    <h3 class="text-sm font-semibold text-white mb-2 uppercase tracking-wide text-emerald-400/90">Algorithmique & Mathématiques</h3>
-                    <p class="text-xs text-slate-400 font-mono">Python, NumPy, Shapely, Alphashape, MGD, Jacobiennes, SVD</p>
+
+                <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-blue-500/40 transition-all group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10">
+                                <img src="img/logo_pascal.png" alt="Logo Institut Pascal" class="h-full w-auto object-contain">
+                            </div>
+                            
+                            <span class="text-xs font-mono text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-full inline-block">Projet M2</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                            Implémentation de Contrôleurs Cartésiens (Vitesse &amp; Impédance) sur Robot Franka FR3
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-2 line-clamp-3">
+                            Développement d'une architecture ouverte de contrôle cinématique et dynamique temps réel pour la manipulation d'objets déformables et l'apprentissage par imitation.
+                        </p>
+                        
+                        <div class="mt-6 space-y-2 border-t border-slate-800/60 pt-4 text-xs text-slate-400">
+                            <div><span class="text-slate-500">Laboratoire :</span> Institut Pascal, Université Clermont Auvergne (UCA)</div>
+                            <div><span class="text-slate-500">Encadrant :</span> Alkhatib Mohammad — <span class="italic font-mono">mohammad.alkhatib@uca.fr</span></div>
+                            <div><span class="text-slate-500">Période :</span> Année Académique 2025-2026</div>
+                        </div>
+                    </div>
+                    <button onclick="switchView('m2')" class="mt-8 w-full inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-xs font-semibold text-blue-400 border border-slate-800 hover:bg-blue-500/10 hover:border-blue-500/30 transition-colors">
+                        Consulter les méthodes &amp; résultats →
+                    </button>
                 </div>
-                <div class="p-4 bg-slate-900/40 border border-slate-800 rounded-lg">
-                    <h3 class="text-sm font-semibold text-white mb-2 uppercase tracking-wide text-emerald-400/90">Estimation & Simulation</h3>
-                    <p class="text-xs text-slate-400 font-mono">Filtre de Kalman IMM, Gazebo Physics, URDF/Xacro, Blender</p>
+
+                <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-indigo-500/40 transition-all group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10">
+                                <img src="img/Logo_ISIR.png" alt="Logo ISIR" class="h-full w-auto object-contain">
+                            </div>
+                            
+                            <div class="text-right">
+                                <span class="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-full inline-block mb-1">Stage M2</span>
+                                <span class="text-[9px] font-mono text-slate-500 block">Dernière mise à jour : mai 2026</span>
+                            </div>
+                        </div>
+                        <h2 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+                            Caractérisation et modélisation de l'incertitude des bras robotiques pour la manipulation
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-2 line-clamp-3">
+                            Optimisation et fiabilisation de l'algorithme de saisie QD Grasp sur robot réel TIAGo via métrologie optique, synchronisation temporelle fine et alignement géométrique 6DoF déterministe.
+                        </p>
+                        
+                        <div class="mt-6 space-y-2 border-t border-slate-800/60 pt-4 text-xs text-slate-400">
+                            <div><span class="text-slate-500">Laboratoire :</span> ISIR, Sorbonne Université (Paris)</div>
+                            <div>
+                                <span class="text-slate-500">Encadrants :</span>
+                                Stéphane Doncieux — <span class="italic font-mono">stephane.doncieux@sorbonne-universite.fr</span><br>
+                                Mahdi Khoramshahi — <span class="italic font-mono">khoramshahi@isir.upmc.fr</span>
+                            </div>
+                            <div><span class="text-slate-500">Période :</span> Avril/Septembre 2026 — 6 mois (En cours)</div>
+                        </div>
+                    </div>
+                    <button onclick="switchView('isir')" class="mt-8 w-full inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-xs font-semibold text-indigo-400 border border-slate-800 hover:bg-indigo-500/10 hover:border-indigo-500/30 transition-colors">
+                        Consulter les méthodes &amp; résultats →
+                    </button>
                 </div>
-                <div class="p-4 bg-slate-900/40 border border-slate-800 rounded-lg">
-                    <h3 class="text-sm font-semibold text-white mb-2 uppercase tracking-wide text-emerald-400/90">Prototypage</h3>
-                    <p class="text-xs text-slate-400 font-mono">CAO (Onshape), Impression 3D FDM, Découpe Laser</p>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="view-m1" class="hidden">
+        <section class="relative overflow-hidden border-b border-slate-900 bg-gradient-to-b from-slate-900/50 to-transparent py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <span class="inline-flex items-center rounded-md bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400 ring-1 ring-inset ring-emerald-500/20 mb-4">
+                        Stage de Master 1 — Automatique &amp; Robotique
+                    </span>
+                    <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                        Modélisation &amp; Analyse de l'Espace Occupé par un Robot Manipulateur Mobile
+                    </h1>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <main id="projets" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
-        
-        <div class="border-b border-slate-900 pb-2">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-emerald-400">03 / Fiches Projets</h2>
-            <p class="mt-1 text-2xl font-bold tracking-tight text-white">Réalisations & Résultats</p>
-        </div>
+        <section id="m1-contexte" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-900">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div>
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-emerald-400">01 / Cadre de recherche</h2>
+                    <p class="mt-1 text-xl font-bold tracking-tight text-white">Contexte &amp; Objectif</p>
+                </div>
+                <div class="lg:col-span-2 space-y-4 text-slate-400 text-xs leading-relaxed">
+                    <p>Stage mené au <strong class="text-slate-200">LAAS-CNRS (Toulouse)</strong> dans l'équipe <strong class="text-slate-200">RAP</strong>.</p>
+                    <p><strong class="text-slate-300">Objectif :</strong> Prédire mathématiquement et en temps réel le volume spatial qu'occupera un robot mobile articulé à court terme (1s et 2s) pour supprimer tout risque de collision avec les opérateurs en milieu industriel.</p>
+                </div>
+            </div>
+        </section>
 
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <section id="m1-competences" class="py-12 bg-slate-900/10 border-b border-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-6">
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-emerald-400">02 / Boîte à outils</h2>
+                    <p class="mt-1 text-xl font-bold tracking-tight text-white">Stack Technique Sélectionnée</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-emerald-400/90 uppercase tracking-wide mb-1">Middleware</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">ROS 2, Arbre TF2, Graphes rqt, Fichiers Launch, YAML</p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-emerald-400/90 uppercase tracking-wide mb-1">Calcul &amp; Mathématiques</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">Python, NumPy, Shapely, Alphashape, MGD, Jacobiennes, SVD</p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-emerald-400/90 uppercase tracking-wide mb-1">Estimation &amp; Simulation</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">Filtre de Kalman IMM, Gazebo Physics, URDF/Xacro, Blender</p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-emerald-400/90 uppercase tracking-wide mb-1">Fabrication</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">CAO (Onshape), Impression 3D FDM, Découpe Laser</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main id="m1-projets" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Fiche Travaux 1</span>
+                    <h3 class="text-lg font-bold text-white">Pipeline de Prédiction Spatiale Temps Réel</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp; Méthodes :</strong> ROS 2 (TF2, YAML), Python (Shapely, Alphashape), Modélisation cinématique (MGD, Jacobiennes), RViz, Matplotlib.</div>
+                        <div><strong class="text-slate-200 block">Description :</strong> Développement d'un nœud de calcul générant une grille d'occupation dynamique (<code class="text-slate-300">OccupancyGrid</code>) pour anticiper la trajectoire complète de la base et du bras. L'algorithme charge dynamiquement des calques de sécurité via fichiers YAML, testés ici sur jumeau numérique d'engin de chantier.</div>
+                        <div><strong class="text-emerald-400 block">Résultats :</strong> Le modèle par maintien de l'accélération constante a éliminé les fausses alertes à l'arrêt et réduit à zéro les erreurs d'impact non anticipé (Erreurs de Type 1).</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full aspect-video bg-slate-950 rounded-lg overflow-hidden border border-slate-850 flex items-center justify-center">
+                            <img src="img/gif_tiago_arm.gif" alt="Déploiement du bras sous Matplotlib" class="w-full h-full object-contain">
+                        </div>
+                        <h4 class="text-[11px] font-semibold text-slate-400 text-center mt-2">Déploiement du bras sous Matplotlib (Calcul d'enveloppe)</h4>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                            <img src="img/img_rviz_live_grid.png" alt="Zones de prédiction sur RViz" class="w-full h-24 object-contain mx-auto">
+                            <h4 class="text-[10px] font-semibold text-slate-400 text-center mt-2">Grilles sur RViz</h4>
+                        </div>
+                        <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                            <img src="img/img_gazebo_vehicle_simulation.png" alt="Zones pour un engin de chantier" class="w-full h-24 object-contain mx-auto">
+                            <h4 class="text-[10px] font-semibold text-slate-400 text-center mt-2">Calque Engin de Chantier</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-slate-900">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Fiche Travaux 2</span>
+                    <h3 class="text-lg font-bold text-white">Suivi de Piétons Multi-Capteurs Robustes aux Occlusions</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp; Méthodes :</strong> Filtre de Kalman IMM (Modèles Multiples Interactifs), Fusion multi-capteurs (4 radars, 4 caméras), Perception ROS 2.</div>
+                        <div><strong class="text-slate-200 block">Description :</strong> Implémentation d'un estimateur basculant dynamiquement entre modèles stationnaires et mouvements rectilignes pour suivre sans interruption les pas des opérateurs.</div>
+                        <div><strong class="text-emerald-400 block">Résultats :</strong> Maintien virtuel parfait des cibles lors des masquages temporaires ou angles morts, évitant les pertes de suivi.</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-slate-900">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/5xV1zjk3q4E" title="Pipeline de détection sur ROS 2" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-slate-900">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Fiche Travaux 3</span>
+                    <h3 class="text-lg font-bold text-white">Prototypage Matériel &amp; Intégration Mécanique</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp; Méthodes :</strong> CAO Onshape, Impression 3D (FDM), Découpe Laser, Intégration Hardware (NVIDIA Jetson).</div>
+                        <div><strong class="text-slate-200 block">Description :</strong> Conception et fabrication sur mesure des structures mécaniques nécessaires pour fixer le calculateur embarqué et les capteurs sur le châssis physique du robot mobile.</div>
+                        <div><strong class="text-emerald-400 block">Résultats :</strong> Bloc de capteurs rigide incliné à 30° précisément, optimisant le champ de vision latéral direct face aux opérateurs proches.</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="p-2 bg-slate-900 border border-slate-800 rounded-xl">
+                        <img src="img/montage_complet_reel.jpg" alt="Intégration physique complète" class="w-full h-40 object-contain mx-auto">
+                        <h4 class="text-[10px] text-center text-slate-400 mt-1">Montage final embarqué</h4>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-2 bg-slate-900 border border-slate-800 rounded-xl">
+                            <img src="img/montage_onshape.png" alt="Conception CAO 3D" class="w-full h-24 object-contain mx-auto">
+                            <h4 class="text-[10px] text-center text-slate-400 mt-1">Modèle Onshape</h4>
+                        </div>
+                        <div class="p-2 bg-slate-900 border border-slate-800 rounded-xl">
+                            <img src="img/montage_reel_focus_camera_et_radar.jpg" alt="Focus bloc capteurs" class="w-full h-24 object-contain mx-auto">
+                            <h4 class="text-[10px] text-center text-slate-400 mt-1">Zoom Bloc Capteurs</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-slate-900">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Fiche Travaux 4</span>
+                    <h3 class="text-lg font-bold text-white">Modélisation URDF &amp; Jumeau Numérique</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp; Méthodes :</strong> URDF / Xacro, Gazebo Physics, Blender (Maillages et traitement géométrique).</div>
+                        <div><strong class="text-slate-200 block">Description :</strong> Création du modèle virtuel d'un véhicule industriel articulé (base + bras télescopique à 3 ddl). Simplification des géométries, calcul des matrices d'inertie et configuration des coefficients de friction.</div>
+                        <div><strong class="text-emerald-400 block">Résultats :</strong> Environnement de simulation physique realistic interconnecté à ROS 2 pour éprouver l'évitement avant déploiement mécanique.</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-slate-900">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/mck_7qFj4Ww" title="Simulation du véhicule lourd articulé" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="view-m2" class="hidden">
+        <section class="relative overflow-hidden border-b border-slate-900 bg-gradient-to-b from-slate-900/50 to-transparent py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <span class="inline-flex items-center rounded-md bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20 mb-4">
+                        Projet de Master 2 — Automatique &amp; Robotique
+                    </span>
+                    <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                        Implémentation de Contrôleurs Cartésiens (Vitesse et Impédance) sur Robot Franka FR3
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <section id="m2-contexte" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-900">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div>
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-blue-400">01 / Cadre de recherche</h2>
+                    <p class="mt-1 text-xl font-bold tracking-tight text-white">Contexte &amp; Objectif</p>
+                </div>
+                <div class="lg:col-span-2 space-y-4 text-slate-400 text-xs leading-relaxed">
+                     <p>Projet de recherche mené à l' <strong class="text-slate-200">Institut Pascal (Université Clermont Auvergne)</strong>.</p>
+                     <p><strong class="text-slate-300">Objectif :</strong> Développer une architecture ouverte sous ROS 2 pour s'affranchir de la bibliothèque propriétaire fermée du constructeur (<span class="italic">libfranka</span>).  L'enjeu est de piloter à la fois la trajectoire spatiale brute et l'absorption des forces lors de tâches d'interaction avec des matériaux déformables.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="m2-competences" class="py-12 bg-slate-900/10 border-b border-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-6">
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-blue-400">02 / Boîte à outils</h2>
+                    <p class="mt-1 text-xl font-bold tracking-tight text-white">Stack Technique Sélectionnée</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-blue-400/90 uppercase tracking-wide mb-1">Architecture Middleware</h3>
+                         <p class="text-[11px] text-slate-400 font-mono">ROS 2, C++ Temps Réel (sans allocation dynamique), Fichiers URDF, Loader absolu </p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-blue-400/90 uppercase tracking-wide mb-1">Dynamique &amp; Modélisation</h3>
+                         <p class="text-[11px] text-slate-400 font-mono">Bibliothèque Pinocchio, Matrice Jacobienne, Algorithme Newton-Euler récursif </p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-blue-400/90 uppercase tracking-wide mb-1">Algorithmes de Commande</h3>
+                         <p class="text-[11px] text-slate-400 font-mono">Pseudo-inverse amortie (DLS), Commande PD, Logarithme matriciel SE(3), Transposée de Jacobienne </p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-blue-400/90 uppercase tracking-wide mb-1">Filtres de Sécurité</h3>
+                         <p class="text-[11px] text-slate-400 font-mono">Limiteur de Jerk, Slew Rate Limiter, Soft Start </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main id="m2-projets" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Fiche Travaux 1</span>
+                    <h3 class="text-lg font-bold text-white">Contrôleur de Vitesse Cartésien &amp; Gestion des Singularités</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp;  Méthodes :</strong> Bibliothèque Pinocchio (C++), Damped Least Squares (DLS), Repère LOCAL_WORLD_ALIGNED.</div>
+                        <div>
+                            <strong class="text-slate-200 block">Description :</strong> 
+                            Calcul haute fréquence (1 kHz) traduisant les mouvements généraux souhaités en commandes de vitesse fluides pour chacun des moteurs du robot. Pour parer les configurations critiques (comme un bras entièrement tendu), l'algorithme intègre la méthode <strong class="text-slate-300">DLS (Damped Least Squares)</strong> : elle agit comme un amortisseur mathématique qui empêche le robot de calculer des vitesses infinies, ce qui déclencherait un arrêt d'urgence automatique, en ajustant très légèrement la précision de la trajectoire. Le système utilise un repère de calcul hybride pour déplacer le robot selon les axes fixes de la pièce tout en maintenant le point de pivot centré sur l'outil.
+                        </div>
+                        <div><strong class="text-blue-400 block">Résultats :</strong> Validation en simulation d'un suivi de trajectoire circulaire parfaitement fluide, exempt de déphasage géométrique ou de distorsion.</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/img_vitesse_trajectoire_3d.png" alt="Suivi Circulaire 3D de l'Effecteur" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-[11px] font-semibold text-slate-400 text-center mt-2">Suivi Circulaire 3D de l'Effecteur (Simulation) </h4>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/img_vitesse_suivi_temporel.png" alt="Superposition Temporelle" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-[10px] font-semibold text-slate-400 text-center mt-2">Superposition Temporelle (Axes X, Y, Z) </h4>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/img_vitesse_erreur_euclidienne.png" alt="Modélisation de l'Erreur Statique Temporelle" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-[10px] font-semibold text-slate-400 text-center mt-2">Modélisation de l'Erreur Statique Temporelle (l'erreur constante de 12.5 mm est l'erreur permettant le mouvement lors du test) </h4>
+                    </div>
+
+                </div>
+            </section>
+
+
+
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-slate-900">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Fiche Travaux 2</span>
+                    <h3 class="text-xl font-bold text-white">Contrôleur d'Impédance Cartésienne SE(3)</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp; Méthodes :</strong> Correcteur PD pur, Régime d'Amortissement Critique, Logarithme Matriciel, Transposée de la Jacobienne.</div>
+                        <div>
+                            <strong class="text-slate-200 block">Description :</strong> 
+                            Développement d'une loi de commande simulant un système de « ressort virtuel » pour permettre au robot d'adapter sa force de manière souple et sécurisée face aux obstacles. Le calcul d'orientation 3D utilise le logarithme matriciel pour éliminer toute instabilité mathématique lors des rotations complexes (Gimbal Lock). L'algorithme traduit directement ces efforts en consignes physiques pour les moteurs afin de garantir un comportement fluide et réactif en temps réel.
+                        </div>
+                        <div><strong class="text-blue-400 block">Résultats :</strong> Sur le robot réel, l'écart spatial mesuré matérialise l'élongation attendue du ressort virtuel pour générer la force motrice apte à vaincre l'inertie mécanique du bras et les frottements internes des transmissions.</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/img_impedance_trajectoire_3d.png" alt="Cercle Élastique Circonscrit sous Frottements Réels" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-xs font-semibold text-center text-slate-300">Cercle Élastique Circonscrit sous Frottements Réels (echelle accentuant les écarts)</h4>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/img_impedance_suivi_temporel.png" alt="Phénomènes d'Atténuation &amp; Déphasage" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-xs font-semibold text-center text-slate-300">Phénomènes d'Atténuation &amp; Déphasage</h4>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/img_impedance_erreur_euclidienne.png" alt="Évaluation du Profil d'Erreur Dynamique" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-xs font-semibold text-center text-slate-300">Évaluation du Profil d'Erreur Dynamique</h4>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-slate-900">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Fiche Travaux 3</span>
+                    <h3 class="text-lg font-bold text-white">Application à une Tâche de Contact : Arrachement de Semelle</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp;  Méthodes :</strong> Robot physique Franka FR3, Projet d'éco-conception REMAIN, Trajectoire par démonstration humaine (DQ-CMP).</div>
+                         <div><strong class="text-slate-200 block">Description :</strong> Expérimentation sur banc matériel réel : une semelle de chaussure est détachée de son support rigide lié par Velcro.  Le bras articulé exécute la trajectoire apprise et exploite la loi d'impédance pour dissiper les variations brusques d'efforts lors de la rupture des liaisons Velcro.</div>
+                         <div><strong class="text-blue-400 block">Résultats :</strong> Démonstration concrète de l'arbitrage précision/compliance.  Une raideur élevée contraint la géométrie mais durcit le contact  , tandis qu'une configuration compliante tolère une déformation spatiale transitoire accrue, garantissant une interaction sûre qui préserve l'intégrité du matériau.</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/Impedance_sole_detachment.gif" alt="Séparation Compliante de la Semelle ( Velcro )" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-[10px] font-semibold text-slate-400 text-center mt-2">Séparation Compliante de la Semelle ( Velcro )</h4>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/Impedance_circle.gif" alt="Comportement du Ressort Virtuel en Direct" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-[10px] font-semibold text-slate-400 text-center mt-2">Comportement du Ressort Virtuel en Direct</h4>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-slate-900">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded">Fiche Travaux 4</span>
+                    <h3 class="text-lg font-bold text-white">Filtrage Cinématique &amp; Robustesse aux Aléas Réseau</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp;  Méthodes :</strong> Générateur cinématique du second ordre, Slew Rate Limiter, Loader de fichier URDF local via <code class="text-blue-400 font-mono text-[11px]">std::filesystem</code>.</div>
+                         <div><strong class="text-slate-200 block">Description :</strong> Intégration de filtres logiciels imbriqués pour protéger la mécanique face aux réalités électriques de l'actionnement.  Les sauts de consigne numériques sont adoucis en bornant le Jerk et l'accélération articulaire, transformant les échelons bruts en rampes acceptables pour l'électronique de puissance.  Par ailleurs, un limiteur de variation temporelle du couple absorbe les discontinuités de commande consécutives aux micro-interruptions ou sauts de latence du réseau informatique.</div>
+                         <div><strong class="text-blue-400 block">Résultats :</strong> Annulation des déclenchements intempestifs des sécurités matérielles du constructeur d'origine électrique (Power Limit) ou informatique (Torque Discontinuity).</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col justify-center h-full min-h-[160px]">
+                    <div class="text-xs space-y-2 text-slate-400 font-mono">
+                        <div class="text-blue-400 font-semibold">// Synthèse des Fonctions Algorithmiques de Protection</div>
+                         <div>• Boucle d'asservissement stricte à 1 kHz </div>
+                         <div>• Lissage anti-jerk du second ordre (Rampes de courant électroniques) </div>
+                         <div>• Slew Rate Limiter pour l'atténuation des sauts réseau </div>
+                         <div>• Clamping de force cartésienne et saturation absolue de couple </div>
+                         <div>• Importation géométrique découplée du réseau ROS 2 via parsing local </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="view-isir" class="hidden">
+        <section class="relative overflow-hidden border-b border-slate-900 bg-gradient-to-b from-slate-900/50 to-transparent py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <span class="inline-flex items-center rounded-md bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20 mb-4">
+                        Stage de Master 2 — Recherche R&amp;D et Intelligence Artificielle
+                    </span>
+                    <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                        Caractérisation et modélisation de l'incertitude des bras robotiques pour la manipulation d'objets
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <section id="isir-contexte" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-900">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div>
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-indigo-400">01 / Cadre de recherche</h2>
+                    <p class="mt-1 text-xl font-bold tracking-tight text-white">Contexte &amp; Objectif</p>
+                </div>
+                <div class="lg:col-span-2 space-y-4 text-slate-400 text-xs leading-relaxed">
+                    <p>Stage de recherche mené au laboratoire <strong class="text-slate-200">ISIR (Institut des Systèmes Intelligents et de Robotique)</strong> à Sorbonne Université, Paris.</p>
+                    <p><strong class="text-slate-300">Objectif :</strong> Caractériser l'incertitude cinématique non linéaire du bras du robot TIAGo (PAL Robotics) dépendant de la pose cible et de sa configuration articulaire interne $q$, afin de fiabiliser et d'optimiser le transfert de simulation à réalité du pipeline d'IA évolutionnaire <strong class="text-emerald-400">QD Grasp</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="isir-competences" class="py-12 bg-slate-900/10 border-b border-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-6">
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-indigo-400">02 / Boîte à outils</h2>
+                    <p class="mt-1 text-xl font-bold tracking-tight text-white">Stack Technique Sélectionnée</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-indigo-400/90 uppercase tracking-wide mb-1">Robotique &amp; Hardware</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">Robot mobile TIAGo, Système optique OptiTrack (Motive), Gestion des occlusions, Diagnostics hardware réels</p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-indigo-400/90 uppercase tracking-wide mb-1">IA &amp; Algorithmique</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">Quality-Diversity (QD), MAP-Elites, Algorithme ME-scs, Optimisation 6DoF Mili Shah (SVD, $SE(3)$)</p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-indigo-400/90 uppercase tracking-wide mb-1">Software &amp; Outils</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">ROS, Architecture MoveIt2 (Cinématique Inverse IK), Python, NumPy, Fichiers structures URDF / SRDF</p>
+                    </div>
+                    <div class="p-3 bg-slate-900/40 border border-slate-800 rounded-lg">
+                        <h3 class="text-xs font-semibold text-indigo-400/90 uppercase tracking-wide mb-1">Métrologie &amp; Signal</h3>
+                        <p class="text-[11px] text-slate-400 font-mono">Analyse par corrélation croisée, Transformations homogènes, Déviation spatio-temporelle, Filtrage du bruit</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main id="isir-projets" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Fiche Travaux 1</span>
+                    <h3 class="text-lg font-bold text-white">Dispositif Expérimental &amp; Optimisation de la Captation Optique</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp; Méthodes :</strong> Système de métrologie OptiTrack, Logiciel Motive, Diagnostics d'occlusions, Analyse géométrique.</div>
+                        <div><strong class="text-slate-200 block">Description :</strong> Déploiement et calibration d'une architecture densifiée de caméras OptiTrack autour de l'espace d'évolution du bras du robot TIAGo. Ce montage sur-mesure permet de maximiser la couverture de la scène, de s'affranchir des angles morts lors des manipulations et de réduire drastiquement le bruit géométrique.</div>
+                        <div><strong class="text-indigo-400 block">Résultats :</strong> Obtention d'une excellente stabilité temporelle et spatiale des mesures physiques de l'effecteur nécessaires à l'analyse d'incertitude.</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-4">
+                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden">
+                            <img src="img/img_tiago_workspace.png" alt="Espace de travail du robot TIAGo" class="w-full h-auto object-contain">
+                        </div>
+                        <h4 class="text-xs font-semibold text-center text-slate-300">Cartographie de l'espace de travail du robot TIAGo et distribution des poses de test</h4>
+                    </div>
+                </div>
+            </section>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es6/fast.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']]
+            }
+        };
+    </script>
+</head>
+
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-slate-900">
             <div class="lg:col-span-5 space-y-4">
-                <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Projet 1</span>
-                <h3 class="text-xl font-bold text-white">Pipeline de Prédiction Spatiale Temps Réel & Cinématique du Corps Complet</h3>
+                <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Fiche Travaux 2</span>
+                <h3 class="text-xl font-bold text-white">Synchronisation Temporelle et Alignement Géométrique 6DoF ROS / OptiTrack</h3>
                 
                 <div class="text-slate-400 text-xs leading-relaxed space-y-3">
                     <div>
                         <strong class="text-slate-200 block mb-0.5">Méthodes & Outils :</strong>
-                        ROS 2 (TF2, YAML), Python (Shapely, Alphashape), Modélisation cinématique (MGD, Jacobiennes, SVD), RViz, Matplotlib.
+                        Python, Corrélation croisée, Remaniement de repères, Optimisation des moindres carrés (SVD / Méthode de Mili Shah), Transformations $SE(3)$, Outil TF.
                     </div>
+                    
                     <div>
-                        <strong class="text-slate-200 block mb-0.5">Description :</strong>
-                        Développement d'un nœud de calcul générant une grille d'occupation dynamique (<code class="text-slate-300">OccupancyGrid</code>) pour anticiper la position future globale du robot (base + bras articulé) à un horizon de 1s et 2s. 
+                        <strong class="text-slate-200 block mb-0.5">Description de la méthodologie :</strong>
+                        <ul class="list-none space-y-2 mt-1 text-slate-400">
+                            <li>
+                                <strong class="text-emerald-400">1. Synchronisation Temporelle :</strong> 
+                                Mise en place d’un protocole de synchronisation déterministe via un « clap » géométrique (mouvement vertical rapide de 15 cm sur l'axe Z). Ce geste génère un pic de position/vitesse identifiable simultanément sur ROS et OptiTrack, permettant de calculer automatiquement le décalage temporel $\Delta t_{offset}$.
+                            </li>
+                            <li>
+                                <strong class="text-emerald-400">2. Alignement des Conventions :</strong> 
+                                Exécution d'un remaniement simple des repères numériques afin de corriger les disparités de coordonnées initiales entre les deux systèmes (OptiTrack en convention Y-up et ROS en Z-up).
+                            </li>
+                            <li>
+                                <strong class="text-emerald-400">3. Optimisation Géométrique Fine :</strong> 
+                                Calcul d'une matrice de transformation fine (rotation globale $\Omega$, translation optimale $\tau$ et correction d'orientation physique de l'outil $R_{offset}$) par une méthode d'optimisation des moindres carrés résolue par Décomposition en Valeurs Singulières (SVD).
+                            </li>
+                        </ul>
                     </div>
+                    
                     <p>
-                        L'intégration cinématique complète intègre les mouvements du bras mobile. Le comportement de cette extension géométrique est validé graphiquement sous <strong class="text-slate-300">Matplotlib </strong>, simulant l'évolution de l'enveloppe de sécurité lorsque le bras se déploie.
+                        Le graphique valide ce processus. Il affiche la superposition parfaite entre les mesures du système ROS (commandes de trajectoires envoyées et estimation cinématique temps réel par l'outil TF) et les mesures physiques d'OptiTrack. On y observe clairement le signal réaligné selon la même convention avant et après l'application de la méthode d'optimisation mathématique.
                     </p>
-                    <p>
-                        La précision et la fiabilité de cette zone prédictive lors d'un déplacement à vitesse constante ont été rigoureusement analysées et validées en direct via <strong class="text-slate-300">RViz</strong>, permettant de superposer les grilles temporelles autour de la plateforme. 
+                    
+                    <p class="border-l-2 border-emerald-500 pl-2 italic text-slate-300">
+                        En conclusion, l'analyse des courbes démontre que les erreurs et les écarts résiduels mesurés post-optimisation sont extrêmement faibles et parfaitement cohérents avec les incertitudes nominales des constructeurs. L'écart entre la la commande de pose envoyée et la cinématique dépend de la précision demandée au plannificateur.
                     </p>
-                    <p>
-                        Grâce à une architecture logicielle hautement modulaire gérée par fichiers de configuration <strong class="text-slate-300">YAML</strong>, l'algorithme est réutilisable sans modification de code pour d'autres structures, comme l'illustre l'application des calques de zones prédictives sur un jumeau numérique d'<strong class="text-slate-300">engin de chantier </strong>.
-                    </p>
+                    
                     <div>
-                        <strong class="text-emerald-400 block mb-0.5">Résultats :</strong>
-                        Le modèle par maintien de l'accélération constante a éliminé les fausses alertes à l'arrêt tout en réduisant à zéro les erreurs critiques d'impact non anticipé (Erreurs de Type 1).
+                        <strong class="text-indigo-400 block mb-0.5">Résultats :</strong>
+                        Flux de données unique, synchronisé au millième de seconde et recalé sur les 6 degrés de liberté pour évaluer les mouvements sans aucun biais métrologique.
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-7 space-y-6">
-                
+            <div class="lg:col-span-7">
                 <div class="bg-slate-900 rounded-xl border border-slate-800 p-4">
                     <div class="w-full aspect-square bg-slate-950 rounded-lg overflow-hidden border border-slate-850 mb-3 flex items-center justify-center">
-                        <img src="img/gif_tiago_arm.gif" alt="Déploiement du bras sous Matplotlib" class="w-full h-full object-contain">
+                        <img src="img/position_errors.png" alt="Superposition des mesures ROS et OptiTrack avant et après alignement" class="w-full h-full object-contain">
                     </div>
                     <div class="text-center border-t border-slate-800/60 pt-2">
-                        <h4 class="text-xs font-semibold text-slate-300">Déploiement du bras sous Matplotlib</h4>
+                        <h4 class="text-xs font-semibold text-slate-300">Superposition des mesures ROS / OptiTrack et alignement des signaux</h4>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-12 border-t border-slate-900">
+                <div class="lg:col-span-5 space-y-3">
+                    <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">Fiche Travaux 4</span>
+                    <h3 class="text-lg font-bold text-white">Génération Automatisée de Poses &amp; Pipeline Statistique</h3>
+                    <div class="text-slate-400 text-xs leading-relaxed space-y-2">
+                        <div><strong class="text-slate-200 block">Outils &amp; Méthodes :</strong> Architecture MoveIt2, Extraction URDF / SRDF, Validation par Cinématique Inverse (IK), Planification anticollision.</div>
+                        <div><strong class="text-slate-200 block">Description :</strong> Génération systématique de centaines de poses de test dans tout l'espace opérationnel du robot. Les calculs d'IK garantissent l'accessibilité physique. Ce pipeline prépare les campagnes de mesures statistiques futures (tests de répétabilité, invariance temporelle de la calibration et étude des micro-oscillations passives non modélisées du gripper ...).</div>                    
+                    </div>
+                </div>
+            <div class="lg:col-span-7">
+                <div class="bg-slate-900 rounded-xl border border-slate-800 p-4">
+                    <div class="w-full aspect-square bg-slate-950 rounded-lg overflow-hidden border border-slate-850 mb-3 flex items-center justify-center">
+                        <img src="img/poses_test.png" alt="Superposition des mesures ROS et OptiTrack avant et après alignement" class="w-full h-full object-contain">
+                    </div>
+                    <div class="text-center border-t border-slate-800/60 pt-2">
+                        <h4 class="text-xs font-semibold text-slate-300">Poses de test générées automatiquement (les poses atteignables sont vertes et les poses non atteignables sont rouges)</h4>
+                    </div>
+                </div>
+            </div>
+            </section>
+
+            <section id="isir-demonstration" class="pt-12 border-t border-slate-900">
+                <div class="relative rounded-2xl overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 p-8 md:p-12 text-center space-y-8 shadow-2xl">
+                    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
                     
-                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-4 flex flex-col justify-between">
-                        <div class="w-full aspect-square bg-slate-950 rounded-lg overflow-hidden border border-slate-850 mb-3 flex items-center justify-center">
-                            <img src="img/img_rviz_live_grid.png" alt="Zones de prédiction sur RViz" class="w-full h-full object-contain">
+                    <div class="max-w-2xl mx-auto space-y-3">
+                        <span class="text-xs font-bold text-indigo-400 tracking-widest uppercase font-mono bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
+                            Démonstration sur robot réel
+                        </span>
+                        <h2 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                            Pipeline QD-Grasp sur TIAGo
+                        </h2>
+                        <p class="text-slate-400 text-xs max-w-xl mx-auto">
+                            Déploiement en conditions réelles pour obtenir un test de référence: le robot TIAGo applique le répertoire de trajectoires de saisies d'objets générées par l'algorithme d'IA Qualité-Diversité.
+                        </p>
+                    </div>
+
+                    <div class="mx-auto max-w-2xl w-full aspect-16/9 bg-slate-950 rounded-xl border border-slate-850 p-2 shadow-inner group">
+                        <div class="w-full h-full rounded-lg bg-slate-900 border border-dashed border-slate-700 flex flex-col items-center justify-center p-6 text-center transition-all group-hover:border-indigo-500/50">
+                            <img src="img/gif_tiago_grasp.gif" alt="gif_tiago_grasp : Le robot TIAGo effectue une saisie d'objet autonome réelle" class="hidden w-full h-full object-cover rounded-lg animate-fade-in" onload="this.classList.remove('hidden'); this.nextElementSibling.classList.add('hidden')">
+                            
+                            <div class="flex flex-col items-center justify-center space-y-2">
+                                <div class="p-3 bg-indigo-500/10 rounded-full text-indigo-400">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <span class="text-xs font-mono text-slate-300 block bg-slate-950 px-3 py-1 rounded border border-slate-800">gif_tiago_grasp.gif</span>
+                                <p class="text-[10px] text-slate-500 max-w-xs">Emplacement du fichier d'animation démontrant l'exécution cinématique finale du bras manipulateur sur machine réelle.</p>
+                            </div>
                         </div>
-                        <div class="text-center border-t border-slate-800/60 pt-2">
-                            <h4 class="text-xs font-semibold text-slate-300">Zones de prédiction sur RViz</h4>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-4 flex flex-col justify-between">
-                        <div class="w-full aspect-square bg-slate-950 rounded-lg overflow-hidden border border-slate-850 mb-3 flex items-center justify-center">
-                            <img src="img/img_gazebo_vehicle_simulation.png" alt="Modularité : Zones pour un engin de chantier" class="w-full h-full object-contain">
-                        </div>
-                        <div class="text-center border-t border-slate-800/60 pt-2">
-                            <h4 class="text-xs font-semibold text-slate-300">Modularité : Zones pour un engin de chantier</h4>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-12 border-t border-slate-900">
-            <div class="lg:col-span-5 space-y-4">
-                <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Projet 2</span>
-                <h3 class="text-xl font-bold text-white">Suivi de Piétons Multi-Capteurs Robustes aux Occlusions</h3>
-                
-                <div class="text-slate-400 text-xs leading-relaxed space-y-3">
-                    <div>
-                        <strong class="text-slate-200 block mb-0.5">Méthodes & Outils :</strong>
-                        Filtre de Kalman IMM (Modèles Multiples Interactifs), Fusion multi-capteurs, Perception ROS 2.
-                    </div>
-                    <div>
-                        <strong class="text-slate-200 block mb-0.5">Description :</strong>
-                        Modélisation de la couverture géométrique de 4 radars et 4 caméras. Implémentation d'un filtre de Kalman IMM alternant dynamiquement entre un comportement stationnaire et un mouvement rectiligne pour suivre les opérateurs piétons.
-                    </div>
-                    <div>
-                        <strong class="text-emerald-400 block mb-0.5">Résultats :</strong>
-                        Maintien virtuel des cibles lors des angles morts ou des masquages temporaires, supprimant les pertes de suivi abruptes.
                     </div>
                 </div>
-            </div>
-            <div class="lg:col-span-7 space-y-4">
-                <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-slate-900">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/5xV1zjk3q4E" title="Pipeline de détection sur ROS 2 et RViz" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
+    </div>
 
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-12 border-t border-slate-900">
-            <div class="lg:col-span-5 space-y-4">
-                <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Projet 3</span>
-                <h3 class="text-xl font-bold text-white">Prototypage Matériel & Intégration Mécanique</h3>
-                
-                <div class="text-slate-400 text-xs leading-relaxed space-y-3">
-                    <div>
-                        <strong class="text-slate-200 block mb-0.5">Méthodes & Outils :</strong>
-                        CAO Onshape, Impression 3D (FDM), Découpe Laser, Intégration hardware.
-                    </div>
-                    <div>
-                        <strong class="text-slate-200 block mb-0.5">Description :</strong>
-                        Conception et fabrication des pièces physiques nécessaires à l'intégration des capteurs (caméras, radars) et du calculateur embarqué NVIDIA Jetson sur le robot mobile réel.
-                    </div>
-                    <div>
-                        <strong class="text-emerald-400 block mb-0.5">Résultats :</strong>
-                        Support capteur conçu avec une inclinaison précise à 30° optimisant le champ de vision latéral. Fixation mécanique rigide validée sur plateforme physique en laboratoire.
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-7 space-y-4">
-                
-                <div class="p-3 bg-slate-900/60 border border-slate-800/80 rounded-xl">
-                    <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden max-h-[300px]">
-                        <img src="img/montage_complet_reel.jpg" alt="Intégration physique complète" class="w-full h-auto max-h-[280px] object-contain">
-                    </div>
-                    <h4 class="text-xs font-semibold text-center text-slate-300">Intégration physique complète sur le robot</h4>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-3 bg-slate-900/60 border border-slate-800/80 rounded-xl flex flex-col justify-between">
-                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden min-h-[180px]">
-                            <img src="img/montage_onshape.png" alt="Conception CAO 3D" class="w-full h-auto max-h-[180px] object-contain">
-                        </div>
-                        <h4 class="text-xs font-semibold text-center text-slate-300">Conception CAO 3D (Onshape)</h4>
-                    </div>
-
-                    <div class="p-3 bg-slate-900/60 border border-slate-800/80 rounded-xl flex flex-col justify-between">
-                        <div class="w-full bg-slate-950 rounded-lg border border-slate-850 p-1 mb-2 flex items-center justify-center overflow-hidden min-h-[180px]">
-                            <img src="img/montage_reel_focus_camera_et_radar.jpg" alt="Focus bloc capteurs" class="w-full h-auto max-h-[180px] object-contain">
-                        </div>
-                        <h4 class="text-xs font-semibold text-center text-slate-300">Focus bloc capteurs (Radar & Caméras)</h4>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-12 border-t border-slate-900">
-            <div class="lg:col-span-5 space-y-4">
-                <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Projet 4</span>
-                <h3 class="text-xl font-bold text-white">Modélisation URDF & Jumeau Numérique pour la Simulation</h3>
-                
-                <div class="text-slate-400 text-xs leading-relaxed space-y-3">
-                    <div>
-                        <strong class="text-slate-200 block mb-0.5">Méthodes & Outils :</strong>
-                        URDF / Xacro, Gazebo Physics, Blender (Décimation et traitement de maillages).
-                    </div>
-                    <div>
-                        <strong class="text-slate-200 block mb-0.5">Description :</strong>
-                        Création d'un jumeau numérique complet d'un véhicule industriel articulé (base mobile + bras télescopique à 3 ddl). Simplification des géométries CAO lourdes, calcul des matrices d'inertie et configuration des friction coefficients sous Gazebo.
-                    </div>
-                    <div>
-                        <strong class="text-emerald-400 block mb-0.5">Résultats :</strong>
-                        Environnement de simulation dynamique réaliste interconnecté à ROS 2, permettant de tester les algorithmes d'évitement sans risque matériel.
-                    </div>
-                </div>
-            </div>
-            <div class="lg:col-span-7 space-y-4">
-                <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-slate-900">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/mck_7qFj4Ww" title="Simulation du véhicule lourd articulé" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="border-t border-slate-900 bg-slate-950/40 py-6">
+    <footer class="border-t border-slate-900 bg-slate-950/40 py-8 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <p>&copy; 2026 — Travaux de R&D et Modélisation Robotique.</p>
+            <p>&copy; 2026 — Quinquis Armand</p>
             <div class="flex space-x-6 text-slate-600">
                 <span>LAAS-CNRS Toulouse</span>
-                <span>Équipe RAP</span>
+                <span>Institut Pascal Clermont-Ferrand</span>
+                <span>ISIR Sorbonne Université Paris</span>
             </div>
         </div>
     </footer>
