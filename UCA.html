@@ -33,26 +33,17 @@
             const navIsir = document.getElementById('nav-links-isir');
             const btnHome = document.getElementById('btn-back-home');
 
+            if (navM1) navM1.classList.add('hidden');
+            if (navM2) navM2.classList.add('hidden');
+            if (navIsir) navIsir.classList.add('hidden');
+
             if (viewId === 'home') {
-                navM1.classList.add('hidden');
-                navM2.classList.add('hidden');
-                navIsir.classList.add('hidden');
-                btnHome.classList.add('hidden');
-            } else if (viewId === 'm1') {
-                navM1.classList.remove('hidden');
-                navM2.classList.add('hidden');
-                navIsir.classList.add('hidden');
-                btnHome.classList.remove('hidden');
-            } else if (viewId === 'm2') {
-                navM1.classList.add('hidden');
-                navM2.classList.remove('hidden');
-                navIsir.classList.add('hidden');
-                btnHome.classList.remove('hidden');
-            } else if (viewId === 'isir') {
-                navM1.classList.add('hidden');
-                navM2.classList.add('hidden');
-                navIsir.classList.remove('hidden');
-                btnHome.classList.remove('hidden');
+                if (btnHome) btnHome.classList.add('hidden');
+            } else {
+                if (btnHome) btnHome.classList.remove('hidden');
+                if (viewId === 'm1' && navM1) navM1.classList.remove('hidden');
+                if (viewId === 'm2' && navM2) navM2.classList.remove('hidden');
+                if (viewId === 'isir' && navIsir) navIsir.classList.remove('hidden');
             }
 
             // AJOUT CRITIQUE : Relance le rendu des maths pour la vue qui vient d'apparaître
@@ -88,7 +79,10 @@
             </div>
             
             <nav class="flex space-x-4 text-sm font-medium">
-                <button id="btn-back-home" onclick="switchView('home')" class="hidden text-slate-400 hover:text-white transition-colors">
+                <button
+                    id="btn-back-home"
+                    onclick="switchView('home')"
+                    class="hidden px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-900 text-slate-300 hover:text-white hover:border-indigo-500 transition-all">
                     ← Accueil
                 </button>
             </nav>
@@ -114,7 +108,7 @@
                 <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-emerald-500/40 transition-all group">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10">
+                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10" data-darkreader-ignore style="color-scheme: light; background-color: white !important;">
                                 <img src="img/logo_laas.png" alt="Logo LAAS-CNRS" class="h-full w-auto object-contain">
                             </div>
                             
@@ -141,7 +135,7 @@
                 <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-blue-500/40 transition-all group">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10">
+                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10" data-darkreader-ignore style="color-scheme: light; background-color: white !important;">
                                 <img src="img/logo_pascal.png" alt="Logo Institut Pascal" class="h-full w-auto object-contain">
                             </div>
                             
@@ -168,7 +162,7 @@
                 <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-indigo-500/40 transition-all group">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10">
+                            <div class="h-10 bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-white/10" data-darkreader-ignore style="color-scheme: light; background-color: white !important;">
                                 <img src="img/Logo_ISIR.png" alt="Logo ISIR" class="h-full w-auto object-contain">
                             </div>
                             
